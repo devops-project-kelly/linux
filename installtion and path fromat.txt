@@ -1,0 +1,984 @@
+[ec2-user@ip-172-31-12-244 ~]$ sudo su
+[root@ip-172-31-12-244 ec2-user]# yum update -y
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+amzn2-core                                                                                                                 | 3.7 kB  00:00:00     
+Resolving Dependencies
+--> Running transaction check
+---> Package kernel.x86_64 0:5.10.149-133.644.amzn2 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+==================================================================================================================================================
+ Package                   Arch                      Version                                      Repository                                 Size
+==================================================================================================================================================
+Installing:
+ kernel                    x86_64                    5.10.149-133.644.amzn2                       amzn2extra-kernel-5.10                     32 M
+
+Transaction Summary
+==================================================================================================================================================
+Install  1 Package
+
+Total download size: 32 M
+Installed size: 136 M
+Downloading packages:
+Delta RPMs disabled because /usr/bin/applydeltarpm not installed.
+kernel-5.10.149-133.644.amzn2.x86_64.rpm                                                                                   |  32 MB  00:00:00     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : kernel-5.10.149-133.644.amzn2.x86_64                                                                                           1/1 
+  Verifying  : kernel-5.10.149-133.644.amzn2.x86_64                                                                                           1/1 
+
+Installed:
+  kernel.x86_64 0:5.10.149-133.644.amzn2                                                                                                          
+
+Complete!
+[root@ip-172-31-12-244 ec2-user]# ssh -i /path/my-key-pair.pem ec2-54-95-36-124.ap-northeast-1.compute.amazonaws.com
+Warning: Identity file /path/my-key-pair.pem not accessible: No such file or directory.
+The authenticity of host 'ec2-54-95-36-124.ap-northeast-1.compute.amazonaws.com (172.31.12.244)' can't be established.
+ECDSA key fingerprint is SHA256:WsMD4+pS8aww9abkyhhyGQTz7sa1XxaLGgCQXfDVnmA.
+ECDSA key fingerprint is MD5:2e:6f:b6:02:4b:ae:22:d3:47:3e:4e:ab:57:12:b2:9e.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'ec2-54-95-36-124.ap-northeast-1.compute.amazonaws.com,172.31.12.244' (ECDSA) to the list of known hosts.
+Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
+[root@ip-172-31-12-244 ec2-user]# sudo yum update –y
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+No Match for argument: –y
+No packages marked for update
+[root@ip-172-31-12-244 ec2-user]# sudo wget -O /etc/yum.repos.d/jenkins.repo \
+>     https://pkg.jenkins.io/redhat-stable/jenkins.repo
+--2022-11-18 09:15:14--  https://pkg.jenkins.io/redhat-stable/jenkins.repo
+Resolving pkg.jenkins.io (pkg.jenkins.io)... 151.101.110.133, 2a04:4e42:1a::645
+Connecting to pkg.jenkins.io (pkg.jenkins.io)|151.101.110.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 85
+Saving to: ‘/etc/yum.repos.d/jenkins.repo’
+
+100%[========================================================================================================>] 85          --.-K/s   in 0s      
+
+2022-11-18 09:15:14 (3.90 MB/s) - ‘/etc/yum.repos.d/jenkins.repo’ saved [85/85]
+
+[root@ip-172-31-12-244 ec2-user]# sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+[root@ip-172-31-12-244 ec2-user]# sudo yum upgrade
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+jenkins                                                                                                                    | 2.9 kB  00:00:00     
+jenkins/primary_db                                                                                                         |  44 kB  00:00:00     
+No packages marked for update
+[root@ip-172-31-12-244 ec2-user]# sudo amazon-linux-extras install java-openjdk11 -y
+Installing java-11-openjdk
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+Cleaning repos: amzn2-core amzn2extra-docker amzn2extra-java-openjdk11 amzn2extra-kernel-5.10 jenkins
+19 metadata files removed
+8 sqlite files removed
+0 metadata files removed
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+amzn2-core                                                                                                                 | 3.7 kB  00:00:00     
+amzn2extra-docker                                                                                                          | 3.0 kB  00:00:00     
+amzn2extra-java-openjdk11                                                                                                  | 3.0 kB  00:00:00     
+amzn2extra-kernel-5.10                                                                                                     | 3.0 kB  00:00:00     
+jenkins                                                                                                                    | 2.9 kB  00:00:00     
+(1/10): amzn2-core/2/x86_64/group_gz                                                                                       | 2.5 kB  00:00:00     
+(2/10): amzn2-core/2/x86_64/updateinfo                                                                                     | 525 kB  00:00:00     
+(3/10): amzn2extra-java-openjdk11/2/x86_64/primary_db                                                                      | 139 kB  00:00:00     
+(4/10): amzn2extra-kernel-5.10/2/x86_64/updateinfo                                                                         |  21 kB  00:00:00     
+(5/10): amzn2extra-docker/2/x86_64/updateinfo                                                                              | 8.0 kB  00:00:00     
+(6/10): amzn2extra-java-openjdk11/2/x86_64/updateinfo                                                                      | 2.7 kB  00:00:00     
+(7/10): amzn2extra-docker/2/x86_64/primary_db                                                                              |  97 kB  00:00:00     
+(8/10): jenkins/primary_db                                                                                                 |  44 kB  00:00:00     
+(9/10): amzn2extra-kernel-5.10/2/x86_64/primary_db                                                                         |  13 MB  00:00:00     
+(10/10): amzn2-core/2/x86_64/primary_db                                                                                    |  66 MB  00:00:01     
+Resolving Dependencies
+--> Running transaction check
+---> Package java-11-openjdk.x86_64 1:11.0.16.0.8-1.amzn2.0.1 will be installed
+--> Processing Dependency: java-11-openjdk-headless(x86-64) = 1:11.0.16.0.8-1.amzn2.0.1 for package: 1:java-11-openjdk-11.0.16.0.8-1.amzn2.0.1.x86_64
+--> Processing Dependency: xorg-x11-fonts-Type1 for package: 1:java-11-openjdk-11.0.16.0.8-1.amzn2.0.1.x86_64
+--> Processing Dependency: fontconfig(x86-64) for package: 1:java-11-openjdk-11.0.16.0.8-1.amzn2.0.1.x86_64
+--> Processing Dependency: libjvm.so()(64bit) for package: 1:java-11-openjdk-11.0.16.0.8-1.amzn2.0.1.x86_64
+--> Processing Dependency: libjava.so()(64bit) for package: 1:java-11-openjdk-11.0.16.0.8-1.amzn2.0.1.x86_64
+--> Processing Dependency: libgif.so.4()(64bit) for package: 1:java-11-openjdk-11.0.16.0.8-1.amzn2.0.1.x86_64
+--> Processing Dependency: libXtst.so.6()(64bit) for package: 1:java-11-openjdk-11.0.16.0.8-1.amzn2.0.1.x86_64
+--> Processing Dependency: libXrender.so.1()(64bit) for package: 1:java-11-openjdk-11.0.16.0.8-1.amzn2.0.1.x86_64
+--> Processing Dependency: libXi.so.6()(64bit) for package: 1:java-11-openjdk-11.0.16.0.8-1.amzn2.0.1.x86_64
+--> Processing Dependency: libXext.so.6()(64bit) for package: 1:java-11-openjdk-11.0.16.0.8-1.amzn2.0.1.x86_64
+--> Processing Dependency: libX11.so.6()(64bit) for package: 1:java-11-openjdk-11.0.16.0.8-1.amzn2.0.1.x86_64
+--> Running transaction check
+---> Package fontconfig.x86_64 0:2.13.0-4.3.amzn2 will be installed
+--> Processing Dependency: fontpackages-filesystem for package: fontconfig-2.13.0-4.3.amzn2.x86_64
+--> Processing Dependency: dejavu-sans-fonts for package: fontconfig-2.13.0-4.3.amzn2.x86_64
+---> Package giflib.x86_64 0:4.1.6-9.amzn2.0.2 will be installed
+--> Processing Dependency: libSM.so.6()(64bit) for package: giflib-4.1.6-9.amzn2.0.2.x86_64
+--> Processing Dependency: libICE.so.6()(64bit) for package: giflib-4.1.6-9.amzn2.0.2.x86_64
+---> Package java-11-openjdk-headless.x86_64 1:11.0.16.0.8-1.amzn2.0.1 will be installed
+--> Processing Dependency: tzdata-java >= 2022a for package: 1:java-11-openjdk-headless-11.0.16.0.8-1.amzn2.0.1.x86_64
+--> Processing Dependency: copy-jdk-configs >= 3.3 for package: 1:java-11-openjdk-headless-11.0.16.0.8-1.amzn2.0.1.x86_64
+--> Processing Dependency: pcsc-lite-libs(x86-64) for package: 1:java-11-openjdk-headless-11.0.16.0.8-1.amzn2.0.1.x86_64
+--> Processing Dependency: log4j-cve-2021-44228-cve-mitigations for package: 1:java-11-openjdk-headless-11.0.16.0.8-1.amzn2.0.1.x86_64
+--> Processing Dependency: lksctp-tools(x86-64) for package: 1:java-11-openjdk-headless-11.0.16.0.8-1.amzn2.0.1.x86_64
+--> Processing Dependency: libasound.so.2(ALSA_0.9.0rc4)(64bit) for package: 1:java-11-openjdk-headless-11.0.16.0.8-1.amzn2.0.1.x86_64
+--> Processing Dependency: libasound.so.2(ALSA_0.9)(64bit) for package: 1:java-11-openjdk-headless-11.0.16.0.8-1.amzn2.0.1.x86_64
+--> Processing Dependency: javapackages-tools for package: 1:java-11-openjdk-headless-11.0.16.0.8-1.amzn2.0.1.x86_64
+--> Processing Dependency: cups-libs(x86-64) for package: 1:java-11-openjdk-headless-11.0.16.0.8-1.amzn2.0.1.x86_64
+--> Processing Dependency: libasound.so.2()(64bit) for package: 1:java-11-openjdk-headless-11.0.16.0.8-1.amzn2.0.1.x86_64
+---> Package libX11.x86_64 0:1.6.7-3.amzn2.0.2 will be installed
+--> Processing Dependency: libX11-common >= 1.6.7-3.amzn2.0.2 for package: libX11-1.6.7-3.amzn2.0.2.x86_64
+--> Processing Dependency: libxcb.so.1()(64bit) for package: libX11-1.6.7-3.amzn2.0.2.x86_64
+---> Package libXext.x86_64 0:1.3.3-3.amzn2.0.2 will be installed
+---> Package libXi.x86_64 0:1.7.9-1.amzn2.0.2 will be installed
+---> Package libXrender.x86_64 0:0.9.10-1.amzn2.0.2 will be installed
+---> Package libXtst.x86_64 0:1.2.3-1.amzn2.0.2 will be installed
+---> Package xorg-x11-fonts-Type1.noarch 0:7.5-9.amzn2 will be installed
+--> Processing Dependency: ttmkfdir for package: xorg-x11-fonts-Type1-7.5-9.amzn2.noarch
+--> Processing Dependency: ttmkfdir for package: xorg-x11-fonts-Type1-7.5-9.amzn2.noarch
+--> Processing Dependency: mkfontdir for package: xorg-x11-fonts-Type1-7.5-9.amzn2.noarch
+--> Processing Dependency: mkfontdir for package: xorg-x11-fonts-Type1-7.5-9.amzn2.noarch
+--> Running transaction check
+---> Package alsa-lib.x86_64 0:1.1.4.1-2.amzn2 will be installed
+---> Package copy-jdk-configs.noarch 0:3.3-10.amzn2 will be installed
+---> Package cups-libs.x86_64 1:1.6.3-51.amzn2 will be installed
+--> Processing Dependency: libavahi-common.so.3()(64bit) for package: 1:cups-libs-1.6.3-51.amzn2.x86_64
+--> Processing Dependency: libavahi-client.so.3()(64bit) for package: 1:cups-libs-1.6.3-51.amzn2.x86_64
+---> Package dejavu-sans-fonts.noarch 0:2.33-6.amzn2 will be installed
+--> Processing Dependency: dejavu-fonts-common = 2.33-6.amzn2 for package: dejavu-sans-fonts-2.33-6.amzn2.noarch
+---> Package fontpackages-filesystem.noarch 0:1.44-8.amzn2 will be installed
+---> Package javapackages-tools.noarch 0:3.4.1-11.amzn2 will be installed
+--> Processing Dependency: python-javapackages = 3.4.1-11.amzn2 for package: javapackages-tools-3.4.1-11.amzn2.noarch
+--> Processing Dependency: libxslt for package: javapackages-tools-3.4.1-11.amzn2.noarch
+---> Package libICE.x86_64 0:1.0.9-9.amzn2.0.2 will be installed
+---> Package libSM.x86_64 0:1.2.2-2.amzn2.0.2 will be installed
+---> Package libX11-common.noarch 0:1.6.7-3.amzn2.0.2 will be installed
+---> Package libxcb.x86_64 0:1.12-1.amzn2.0.2 will be installed
+--> Processing Dependency: libXau.so.6()(64bit) for package: libxcb-1.12-1.amzn2.0.2.x86_64
+---> Package lksctp-tools.x86_64 0:1.0.17-2.amzn2.0.2 will be installed
+---> Package log4j-cve-2021-44228-hotpatch.noarch 0:1.3-7.amzn2 will be installed
+---> Package pcsc-lite-libs.x86_64 0:1.8.8-7.amzn2 will be installed
+---> Package ttmkfdir.x86_64 0:3.0.9-42.amzn2.0.2 will be installed
+---> Package tzdata-java.noarch 0:2022e-1.amzn2.0.1 will be installed
+---> Package xorg-x11-font-utils.x86_64 1:7.5-21.amzn2 will be installed
+--> Processing Dependency: libfontenc.so.1()(64bit) for package: 1:xorg-x11-font-utils-7.5-21.amzn2.x86_64
+--> Running transaction check
+---> Package avahi-libs.x86_64 0:0.6.31-20.amzn2 will be installed
+---> Package dejavu-fonts-common.noarch 0:2.33-6.amzn2 will be installed
+---> Package libXau.x86_64 0:1.0.8-2.1.amzn2.0.2 will be installed
+---> Package libfontenc.x86_64 0:1.1.3-3.amzn2.0.2 will be installed
+---> Package libxslt.x86_64 0:1.1.28-6.amzn2 will be installed
+---> Package python-javapackages.noarch 0:3.4.1-11.amzn2 will be installed
+--> Processing Dependency: python-lxml for package: python-javapackages-3.4.1-11.amzn2.noarch
+--> Running transaction check
+---> Package python-lxml.x86_64 0:3.2.1-4.amzn2.0.3 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+==================================================================================================================================================
+ Package                                   Arch               Version                                 Repository                             Size
+==================================================================================================================================================
+Installing:
+ java-11-openjdk                           x86_64             1:11.0.16.0.8-1.amzn2.0.1               amzn2extra-java-openjdk11             235 k
+Installing for dependencies:
+ alsa-lib                                  x86_64             1.1.4.1-2.amzn2                         amzn2-core                            425 k
+ avahi-libs                                x86_64             0.6.31-20.amzn2                         amzn2-core                             61 k
+ copy-jdk-configs                          noarch             3.3-10.amzn2                            amzn2-core                             21 k
+ cups-libs                                 x86_64             1:1.6.3-51.amzn2                        amzn2-core                            356 k
+ dejavu-fonts-common                       noarch             2.33-6.amzn2                            amzn2-core                             64 k
+ dejavu-sans-fonts                         noarch             2.33-6.amzn2                            amzn2-core                            1.4 M
+ fontconfig                                x86_64             2.13.0-4.3.amzn2                        amzn2-core                            253 k
+ fontpackages-filesystem                   noarch             1.44-8.amzn2                            amzn2-core                             10 k
+ giflib                                    x86_64             4.1.6-9.amzn2.0.2                       amzn2-core                             40 k
+ java-11-openjdk-headless                  x86_64             1:11.0.16.0.8-1.amzn2.0.1               amzn2extra-java-openjdk11              40 M
+ javapackages-tools                        noarch             3.4.1-11.amzn2                          amzn2-core                             73 k
+ libICE                                    x86_64             1.0.9-9.amzn2.0.2                       amzn2-core                             67 k
+ libSM                                     x86_64             1.2.2-2.amzn2.0.2                       amzn2-core                             39 k
+ libX11                                    x86_64             1.6.7-3.amzn2.0.2                       amzn2-core                            606 k
+ libX11-common                             noarch             1.6.7-3.amzn2.0.2                       amzn2-core                            165 k
+ libXau                                    x86_64             1.0.8-2.1.amzn2.0.2                     amzn2-core                             29 k
+ libXext                                   x86_64             1.3.3-3.amzn2.0.2                       amzn2-core                             39 k
+ libXi                                     x86_64             1.7.9-1.amzn2.0.2                       amzn2-core                             41 k
+ libXrender                                x86_64             0.9.10-1.amzn2.0.2                      amzn2-core                             26 k
+ libXtst                                   x86_64             1.2.3-1.amzn2.0.2                       amzn2-core                             20 k
+ libfontenc                                x86_64             1.1.3-3.amzn2.0.2                       amzn2-core                             31 k
+ libxcb                                    x86_64             1.12-1.amzn2.0.2                        amzn2-core                            216 k
+ libxslt                                   x86_64             1.1.28-6.amzn2                          amzn2-core                            240 k
+ lksctp-tools                              x86_64             1.0.17-2.amzn2.0.2                      amzn2-core                             88 k
+ log4j-cve-2021-44228-hotpatch             noarch             1.3-7.amzn2                             amzn2-core                            139 k
+ pcsc-lite-libs                            x86_64             1.8.8-7.amzn2                           amzn2-core                             35 k
+ python-javapackages                       noarch             3.4.1-11.amzn2                          amzn2-core                             31 k
+ python-lxml                               x86_64             3.2.1-4.amzn2.0.3                       amzn2-core                            1.0 M
+ ttmkfdir                                  x86_64             3.0.9-42.amzn2.0.2                      amzn2-core                             50 k
+ tzdata-java                               noarch             2022e-1.amzn2.0.1                       amzn2-core                            185 k
+ xorg-x11-font-utils                       x86_64             1:7.5-21.amzn2                          amzn2-core                            103 k
+ xorg-x11-fonts-Type1                      noarch             7.5-9.amzn2                             amzn2-core                            521 k
+
+Transaction Summary
+==================================================================================================================================================
+Install  1 Package (+32 Dependent packages)
+
+Total download size: 46 M
+Installed size: 184 M
+Downloading packages:
+(1/33): avahi-libs-0.6.31-20.amzn2.x86_64.rpm                                                                              |  61 kB  00:00:00     
+(2/33): alsa-lib-1.1.4.1-2.amzn2.x86_64.rpm                                                                                | 425 kB  00:00:00     
+(3/33): copy-jdk-configs-3.3-10.amzn2.noarch.rpm                                                                           |  21 kB  00:00:00     
+(4/33): cups-libs-1.6.3-51.amzn2.x86_64.rpm                                                                                | 356 kB  00:00:00     
+(5/33): dejavu-fonts-common-2.33-6.amzn2.noarch.rpm                                                                        |  64 kB  00:00:00     
+(6/33): dejavu-sans-fonts-2.33-6.amzn2.noarch.rpm                                                                          | 1.4 MB  00:00:00     
+(7/33): fontconfig-2.13.0-4.3.amzn2.x86_64.rpm                                                                             | 253 kB  00:00:00     
+(8/33): fontpackages-filesystem-1.44-8.amzn2.noarch.rpm                                                                    |  10 kB  00:00:00     
+(9/33): giflib-4.1.6-9.amzn2.0.2.x86_64.rpm                                                                                |  40 kB  00:00:00     
+(10/33): javapackages-tools-3.4.1-11.amzn2.noarch.rpm                                                                      |  73 kB  00:00:00     
+(11/33): libICE-1.0.9-9.amzn2.0.2.x86_64.rpm                                                                               |  67 kB  00:00:00     
+(12/33): libSM-1.2.2-2.amzn2.0.2.x86_64.rpm                                                                                |  39 kB  00:00:00     
+(13/33): libX11-1.6.7-3.amzn2.0.2.x86_64.rpm                                                                               | 606 kB  00:00:00     
+(14/33): libX11-common-1.6.7-3.amzn2.0.2.noarch.rpm                                                                        | 165 kB  00:00:00     
+(15/33): libXau-1.0.8-2.1.amzn2.0.2.x86_64.rpm                                                                             |  29 kB  00:00:00     
+(16/33): libXext-1.3.3-3.amzn2.0.2.x86_64.rpm                                                                              |  39 kB  00:00:00     
+(17/33): libXi-1.7.9-1.amzn2.0.2.x86_64.rpm                                                                                |  41 kB  00:00:00     
+(18/33): libXrender-0.9.10-1.amzn2.0.2.x86_64.rpm                                                                          |  26 kB  00:00:00     
+(19/33): libXtst-1.2.3-1.amzn2.0.2.x86_64.rpm                                                                              |  20 kB  00:00:00     
+(20/33): libfontenc-1.1.3-3.amzn2.0.2.x86_64.rpm                                                                           |  31 kB  00:00:00     
+(21/33): libxcb-1.12-1.amzn2.0.2.x86_64.rpm                                                                                | 216 kB  00:00:00     
+(22/33): libxslt-1.1.28-6.amzn2.x86_64.rpm                                                                                 | 240 kB  00:00:00     
+(23/33): java-11-openjdk-11.0.16.0.8-1.amzn2.0.1.x86_64.rpm                                                                | 235 kB  00:00:00     
+(24/33): lksctp-tools-1.0.17-2.amzn2.0.2.x86_64.rpm                                                                        |  88 kB  00:00:00     
+(25/33): log4j-cve-2021-44228-hotpatch-1.3-7.amzn2.noarch.rpm                                                              | 139 kB  00:00:00     
+(26/33): pcsc-lite-libs-1.8.8-7.amzn2.x86_64.rpm                                                                           |  35 kB  00:00:00     
+(27/33): python-lxml-3.2.1-4.amzn2.0.3.x86_64.rpm                                                                          | 1.0 MB  00:00:00     
+(28/33): ttmkfdir-3.0.9-42.amzn2.0.2.x86_64.rpm                                                                            |  50 kB  00:00:00     
+(29/33): python-javapackages-3.4.1-11.amzn2.noarch.rpm                                                                     |  31 kB  00:00:00     
+(30/33): tzdata-java-2022e-1.amzn2.0.1.noarch.rpm                                                                          | 185 kB  00:00:00     
+(31/33): xorg-x11-font-utils-7.5-21.amzn2.x86_64.rpm                                                                       | 103 kB  00:00:00     
+(32/33): xorg-x11-fonts-Type1-7.5-9.amzn2.noarch.rpm                                                                       | 521 kB  00:00:00     
+(33/33): java-11-openjdk-headless-11.0.16.0.8-1.amzn2.0.1.x86_64.rpm                                                       |  40 MB  00:00:00     
+--------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                              45 MB/s |  46 MB  00:00:01     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : libxslt-1.1.28-6.amzn2.x86_64                                                                                                 1/33 
+  Installing : libICE-1.0.9-9.amzn2.0.2.x86_64                                                                                               2/33 
+  Installing : fontpackages-filesystem-1.44-8.amzn2.noarch                                                                                   3/33 
+  Installing : dejavu-fonts-common-2.33-6.amzn2.noarch                                                                                       4/33 
+  Installing : dejavu-sans-fonts-2.33-6.amzn2.noarch                                                                                         5/33 
+  Installing : fontconfig-2.13.0-4.3.amzn2.x86_64                                                                                            6/33 
+  Installing : libSM-1.2.2-2.amzn2.0.2.x86_64                                                                                                7/33 
+  Installing : python-lxml-3.2.1-4.amzn2.0.3.x86_64                                                                                          8/33 
+  Installing : python-javapackages-3.4.1-11.amzn2.noarch                                                                                     9/33 
+  Installing : javapackages-tools-3.4.1-11.amzn2.noarch                                                                                     10/33 
+  Installing : alsa-lib-1.1.4.1-2.amzn2.x86_64                                                                                              11/33 
+  Installing : copy-jdk-configs-3.3-10.amzn2.noarch                                                                                         12/33 
+  Installing : pcsc-lite-libs-1.8.8-7.amzn2.x86_64                                                                                          13/33 
+  Installing : avahi-libs-0.6.31-20.amzn2.x86_64                                                                                            14/33 
+  Installing : 1:cups-libs-1.6.3-51.amzn2.x86_64                                                                                            15/33 
+  Installing : libfontenc-1.1.3-3.amzn2.0.2.x86_64                                                                                          16/33 
+  Installing : 1:xorg-x11-font-utils-7.5-21.amzn2.x86_64                                                                                    17/33 
+  Installing : libXau-1.0.8-2.1.amzn2.0.2.x86_64                                                                                            18/33 
+  Installing : libxcb-1.12-1.amzn2.0.2.x86_64                                                                                               19/33 
+  Installing : libX11-common-1.6.7-3.amzn2.0.2.noarch                                                                                       20/33 
+  Installing : libX11-1.6.7-3.amzn2.0.2.x86_64                                                                                              21/33 
+  Installing : libXext-1.3.3-3.amzn2.0.2.x86_64                                                                                             22/33 
+  Installing : libXi-1.7.9-1.amzn2.0.2.x86_64                                                                                               23/33 
+  Installing : libXtst-1.2.3-1.amzn2.0.2.x86_64                                                                                             24/33 
+  Installing : libXrender-0.9.10-1.amzn2.0.2.x86_64                                                                                         25/33 
+  Installing : giflib-4.1.6-9.amzn2.0.2.x86_64                                                                                              26/33 
+  Installing : ttmkfdir-3.0.9-42.amzn2.0.2.x86_64                                                                                           27/33 
+  Installing : xorg-x11-fonts-Type1-7.5-9.amzn2.noarch                                                                                      28/33 
+  Installing : lksctp-tools-1.0.17-2.amzn2.0.2.x86_64                                                                                       29/33 
+  Installing : log4j-cve-2021-44228-hotpatch-1.3-7.amzn2.noarch                                                                             30/33 
+Created symlink from /etc/systemd/system/multi-user.target.wants/log4j-cve-2021-44228-hotpatch.service to /usr/lib/systemd/system/log4j-cve-2021-44228-hotpatch.service.
+  Installing : tzdata-java-2022e-1.amzn2.0.1.noarch                                                                                         31/33 
+  Installing : 1:java-11-openjdk-headless-11.0.16.0.8-1.amzn2.0.1.x86_64                                                                    32/33 
+  Installing : 1:java-11-openjdk-11.0.16.0.8-1.amzn2.0.1.x86_64                                                                             33/33 
+  Verifying  : libSM-1.2.2-2.amzn2.0.2.x86_64                                                                                                1/33 
+  Verifying  : python-lxml-3.2.1-4.amzn2.0.3.x86_64                                                                                          2/33 
+  Verifying  : fontpackages-filesystem-1.44-8.amzn2.noarch                                                                                   3/33 
+  Verifying  : tzdata-java-2022e-1.amzn2.0.1.noarch                                                                                          4/33 
+  Verifying  : libxcb-1.12-1.amzn2.0.2.x86_64                                                                                                5/33 
+  Verifying  : libXext-1.3.3-3.amzn2.0.2.x86_64                                                                                              6/33 
+  Verifying  : libX11-1.6.7-3.amzn2.0.2.x86_64                                                                                               7/33 
+  Verifying  : log4j-cve-2021-44228-hotpatch-1.3-7.amzn2.noarch                                                                              8/33 
+  Verifying  : lksctp-tools-1.0.17-2.amzn2.0.2.x86_64                                                                                        9/33 
+  Verifying  : ttmkfdir-3.0.9-42.amzn2.0.2.x86_64                                                                                           10/33 
+  Verifying  : libX11-common-1.6.7-3.amzn2.0.2.noarch                                                                                       11/33 
+  Verifying  : dejavu-fonts-common-2.33-6.amzn2.noarch                                                                                      12/33 
+  Verifying  : 1:cups-libs-1.6.3-51.amzn2.x86_64                                                                                            13/33 
+  Verifying  : libXau-1.0.8-2.1.amzn2.0.2.x86_64                                                                                            14/33 
+  Verifying  : libfontenc-1.1.3-3.amzn2.0.2.x86_64                                                                                          15/33 
+  Verifying  : xorg-x11-fonts-Type1-7.5-9.amzn2.noarch                                                                                      16/33 
+  Verifying  : 1:xorg-x11-font-utils-7.5-21.amzn2.x86_64                                                                                    17/33 
+  Verifying  : libXrender-0.9.10-1.amzn2.0.2.x86_64                                                                                         18/33 
+  Verifying  : avahi-libs-0.6.31-20.amzn2.x86_64                                                                                            19/33 
+  Verifying  : dejavu-sans-fonts-2.33-6.amzn2.noarch                                                                                        20/33 
+  Verifying  : fontconfig-2.13.0-4.3.amzn2.x86_64                                                                                           21/33 
+  Verifying  : pcsc-lite-libs-1.8.8-7.amzn2.x86_64                                                                                          22/33 
+  Verifying  : giflib-4.1.6-9.amzn2.0.2.x86_64                                                                                              23/33 
+  Verifying  : python-javapackages-3.4.1-11.amzn2.noarch                                                                                    24/33 
+  Verifying  : libXi-1.7.9-1.amzn2.0.2.x86_64                                                                                               25/33 
+  Verifying  : libICE-1.0.9-9.amzn2.0.2.x86_64                                                                                              26/33 
+  Verifying  : libxslt-1.1.28-6.amzn2.x86_64                                                                                                27/33 
+  Verifying  : 1:java-11-openjdk-11.0.16.0.8-1.amzn2.0.1.x86_64                                                                             28/33 
+  Verifying  : libXtst-1.2.3-1.amzn2.0.2.x86_64                                                                                             29/33 
+  Verifying  : copy-jdk-configs-3.3-10.amzn2.noarch                                                                                         30/33 
+  Verifying  : alsa-lib-1.1.4.1-2.amzn2.x86_64                                                                                              31/33 
+  Verifying  : 1:java-11-openjdk-headless-11.0.16.0.8-1.amzn2.0.1.x86_64                                                                    32/33 
+  Verifying  : javapackages-tools-3.4.1-11.amzn2.noarch                                                                                     33/33 
+
+Installed:
+  java-11-openjdk.x86_64 1:11.0.16.0.8-1.amzn2.0.1                                                                                                
+
+Dependency Installed:
+  alsa-lib.x86_64 0:1.1.4.1-2.amzn2                                    avahi-libs.x86_64 0:0.6.31-20.amzn2                                        
+  copy-jdk-configs.noarch 0:3.3-10.amzn2                               cups-libs.x86_64 1:1.6.3-51.amzn2                                          
+  dejavu-fonts-common.noarch 0:2.33-6.amzn2                            dejavu-sans-fonts.noarch 0:2.33-6.amzn2                                    
+  fontconfig.x86_64 0:2.13.0-4.3.amzn2                                 fontpackages-filesystem.noarch 0:1.44-8.amzn2                              
+  giflib.x86_64 0:4.1.6-9.amzn2.0.2                                    java-11-openjdk-headless.x86_64 1:11.0.16.0.8-1.amzn2.0.1                  
+  javapackages-tools.noarch 0:3.4.1-11.amzn2                           libICE.x86_64 0:1.0.9-9.amzn2.0.2                                          
+  libSM.x86_64 0:1.2.2-2.amzn2.0.2                                     libX11.x86_64 0:1.6.7-3.amzn2.0.2                                          
+  libX11-common.noarch 0:1.6.7-3.amzn2.0.2                             libXau.x86_64 0:1.0.8-2.1.amzn2.0.2                                        
+  libXext.x86_64 0:1.3.3-3.amzn2.0.2                                   libXi.x86_64 0:1.7.9-1.amzn2.0.2                                           
+  libXrender.x86_64 0:0.9.10-1.amzn2.0.2                               libXtst.x86_64 0:1.2.3-1.amzn2.0.2                                         
+  libfontenc.x86_64 0:1.1.3-3.amzn2.0.2                                libxcb.x86_64 0:1.12-1.amzn2.0.2                                           
+  libxslt.x86_64 0:1.1.28-6.amzn2                                      lksctp-tools.x86_64 0:1.0.17-2.amzn2.0.2                                   
+  log4j-cve-2021-44228-hotpatch.noarch 0:1.3-7.amzn2                   pcsc-lite-libs.x86_64 0:1.8.8-7.amzn2                                      
+  python-javapackages.noarch 0:3.4.1-11.amzn2                          python-lxml.x86_64 0:3.2.1-4.amzn2.0.3                                     
+  ttmkfdir.x86_64 0:3.0.9-42.amzn2.0.2                                 tzdata-java.noarch 0:2022e-1.amzn2.0.1                                     
+  xorg-x11-font-utils.x86_64 1:7.5-21.amzn2                            xorg-x11-fonts-Type1.noarch 0:7.5-9.amzn2                                  
+
+Complete!
+  0  ansible2                 available    \
+        [ =2.4.2  =2.4.6  =2.8  =stable ]
+  2  httpd_modules            available    [ =1.0  =stable ]
+  3  memcached1.5             available    \
+        [ =1.5.1  =1.5.16  =1.5.17 ]
+  6  postgresql10             available    [ =10  =stable ]
+  9  R3.4                     available    [ =3.4.3  =stable ]
+ 10  rust1                    available    \
+        [ =1.22.1  =1.26.0  =1.26.1  =1.27.2  =1.31.0  =1.38.0
+          =stable ]
+ 18  libreoffice              available    \
+        [ =5.0.6.2_15  =5.3.6.1  =stable ]
+ 19  gimp                     available    [ =2.8.22 ]
+ 20  docker=latest            enabled      \
+        [ =17.12.1  =18.03.1  =18.06.1  =18.09.9  =stable ]
+ 21  mate-desktop1.x          available    \
+        [ =1.19.0  =1.20.0  =stable ]
+ 22  GraphicsMagick1.3        available    \
+        [ =1.3.29  =1.3.32  =1.3.34  =stable ]
+ 23  tomcat8.5                available    \
+        [ =8.5.31  =8.5.32  =8.5.38  =8.5.40  =8.5.42  =8.5.50
+          =stable ]
+ 24  epel                     available    [ =7.11  =stable ]
+ 25  testing                  available    [ =1.0  =stable ]
+ 26  ecs                      available    [ =stable ]
+ 27  corretto8                available    \
+        [ =1.8.0_192  =1.8.0_202  =1.8.0_212  =1.8.0_222  =1.8.0_232
+          =1.8.0_242  =stable ]
+ 28  firecracker              available    [ =0.11  =stable ]
+ 29  golang1.11               available    \
+        [ =1.11.3  =1.11.11  =1.11.13  =stable ]
+ 30  squid4                   available    [ =4  =stable ]
+ 32  lustre2.10               available    \
+        [ =2.10.5  =2.10.8  =stable ]
+ 33  java-openjdk11=latest    enabled      [ =11  =stable ]
+ 34  lynis                    available    [ =stable ]
+ 36  BCC                      available    [ =0.x  =stable ]
+ 37  mono                     available    [ =5.x  =stable ]
+ 38  nginx1                   available    [ =stable ]
+ 39  ruby2.6                  available    [ =2.6  =stable ]
+ 40  mock                     available    [ =stable ]
+ 41  postgresql11             available    [ =11  =stable ]
+ 42  php7.4                   available    [ =stable ]
+ 43  livepatch                available    [ =stable ]
+ 44  python3.8                available    [ =stable ]
+ 45  haproxy2                 available    [ =stable ]
+ 46  collectd                 available    [ =stable ]
+ 47  aws-nitro-enclaves-cli   available    [ =stable ]
+ 48  R4                       available    [ =stable ]
+  _  kernel-5.4               available    [ =stable ]
+ 50  selinux-ng               available    [ =stable ]
+ 51  php8.0                   available    [ =stable ]
+ 52  tomcat9                  available    [ =stable ]
+ 53  unbound1.13              available    [ =stable ]
+ 54  mariadb10.5              available    [ =stable ]
+ 55  kernel-5.10=latest       enabled      [ =stable ]
+ 56  redis6                   available    [ =stable ]
+ 57  ruby3.0                  available    [ =stable ]
+ 58  postgresql12             available    [ =stable ]
+ 59  postgresql13             available    [ =stable ]
+ 60  mock2                    available    [ =stable ]
+ 61  dnsmasq2.85              available    [ =stable ]
+ 62  kernel-5.15              available    [ =stable ]
+ 63  postgresql14             available    [ =stable ]
+ 64  firefox                  available    [ =stable ]
+ 65  lustre                   available    [ =stable ]
+[root@ip-172-31-12-244 ec2-user]# sudo yum install jenkins -y
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+Resolving Dependencies
+--> Running transaction check
+---> Package jenkins.noarch 0:2.361.4-1.1 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+==================================================================================================================================================
+ Package                           Arch                             Version                               Repository                         Size
+==================================================================================================================================================
+Installing:
+ jenkins                           noarch                           2.361.4-1.1                           jenkins                            89 M
+
+Transaction Summary
+==================================================================================================================================================
+Install  1 Package
+
+Total download size: 89 M
+Installed size: 89 M
+Downloading packages:
+jenkins-2.361.4-1.1.noarch.rpm                                                                                             |  89 MB  00:00:04     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : jenkins-2.361.4-1.1.noarch                                                                                                     1/1 
+  Verifying  : jenkins-2.361.4-1.1.noarch                                                                                                     1/1 
+
+Installed:
+  jenkins.noarch 0:2.361.4-1.1                                                                                                                    
+
+Complete!
+[root@ip-172-31-12-244 ec2-user]# sudo systemctl enable jenkins
+Created symlink from /etc/systemd/system/multi-user.target.wants/jenkins.service to /usr/lib/systemd/system/jenkins.service.
+[root@ip-172-31-12-244 ec2-user]# sudo systemctl start jenkins
+[root@ip-172-31-12-244 ec2-user]# sudo systemctl status jenkins
+● jenkins.service - Jenkins Continuous Integration Server
+   Loaded: loaded (/usr/lib/systemd/system/jenkins.service; enabled; vendor preset: disabled)
+   Active: active (running) since Fri 2022-11-18 09:18:15 UTC; 12s ago
+ Main PID: 7341 (java)
+   CGroup: /system.slice/jenkins.service
+           └─7341 /usr/bin/java -Djava.awt.headless=true -jar /usr/share/java/jenkins.war --webroot=%C/jenkins/war --httpPort=8080
+
+Nov 18 09:17:45 ip-172-31-12-244.ap-northeast-1.compute.internal jenkins[7341]: This may also be found at: /var/lib/jenkins/secrets/initial...word
+Nov 18 09:17:45 ip-172-31-12-244.ap-northeast-1.compute.internal jenkins[7341]: *************************************************************
+Nov 18 09:17:45 ip-172-31-12-244.ap-northeast-1.compute.internal jenkins[7341]: *************************************************************
+Nov 18 09:17:45 ip-172-31-12-244.ap-northeast-1.compute.internal jenkins[7341]: *************************************************************
+Nov 18 09:18:15 ip-172-31-12-244.ap-northeast-1.compute.internal jenkins[7341]: 2022-11-18 09:18:15.745+0000 [id=29]        INFO        jen...tion
+Nov 18 09:18:15 ip-172-31-12-244.ap-northeast-1.compute.internal jenkins[7341]: 2022-11-18 09:18:15.776+0000 [id=23]        INFO        hud...ning
+Nov 18 09:18:15 ip-172-31-12-244.ap-northeast-1.compute.internal systemd[1]: Started Jenkins Continuous Integration Server.
+Nov 18 09:18:16 ip-172-31-12-244.ap-northeast-1.compute.internal jenkins[7341]: 2022-11-18 09:18:16.203+0000 [id=45]        INFO        h.m...ller
+Nov 18 09:18:16 ip-172-31-12-244.ap-northeast-1.compute.internal jenkins[7341]: 2022-11-18 09:18:16.203+0000 [id=45]        INFO        hud...t #1
+Nov 18 09:18:16 ip-172-31-12-244.ap-northeast-1.compute.internal jenkins[7341]: 2022-11-18 09:18:16.207+0000 [id=45]        INFO        hud...4 ms
+Hint: Some lines were ellipsized, use -l to show in full.
+[root@ip-172-31-12-244 ec2-user]# sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+83fca606d77f4c03b071e5e4b4f3c2ee
+[root@ip-172-31-12-244 ec2-user]# /var/lib/jenkins/secrets/initial...word
+bash: /var/lib/jenkins/secrets/initial...word: No such file or directory
+[root@ip-172-31-12-244 ec2-user]# Nov 18 09:17:45 ip-172-31-12-244.ap-northeast-1.compute.internal jenkins[7341]: This may also be found at: /var/lib/jenkins/secrets/initialAdminPassword
+bash: Nov: command not found
+[root@ip-172-31-12-244 ec2-user]# /var/lib/jenkins/secrets/initialAdminPassword
+bash: /var/lib/jenkins/secrets/initialAdminPassword: Permission denied
+[root@ip-172-31-12-244 ec2-user]# cat /var/lib/jenkins/secrets/initialAdminPassword
+83fca606d77f4c03b071e5e4b4f3c2ee
+[root@ip-172-31-12-244 ec2-user]# cd /opt
+[root@ip-172-31-12-244 opt]# https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz
+bash: https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz: No such file or directory
+[root@ip-172-31-12-244 opt]# wget https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz
+--2022-11-18 09:34:11--  https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz
+Resolving dlcdn.apache.org (dlcdn.apache.org)... 151.101.2.132, 2a04:4e42::644
+Connecting to dlcdn.apache.org (dlcdn.apache.org)|151.101.2.132|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 8676320 (8.3M) [application/x-gzip]
+Saving to: ‘apache-maven-3.8.6-bin.tar.gz’
+
+100%[========================================================================================================>] 8,676,320   --.-K/s   in 0.09s   
+
+2022-11-18 09:34:11 (93.3 MB/s) - ‘apache-maven-3.8.6-bin.tar.gz’ saved [8676320/8676320]
+
+[root@ip-172-31-12-244 opt]# ls
+apache-maven-3.8.6-bin.tar.gz  aws  rh
+[root@ip-172-31-12-244 opt]# tar xzvf apache-maven-3.8.6-bin.tar.gz 
+apache-maven-3.8.6/README.txt
+apache-maven-3.8.6/LICENSE
+apache-maven-3.8.6/NOTICE
+apache-maven-3.8.6/lib/
+apache-maven-3.8.6/lib/commons-cli.license
+apache-maven-3.8.6/lib/commons-io.license
+apache-maven-3.8.6/lib/commons-lang3.license
+apache-maven-3.8.6/lib/guava.license
+apache-maven-3.8.6/lib/guice.license
+apache-maven-3.8.6/lib/jansi.license
+apache-maven-3.8.6/lib/javax.annotation-api.license
+apache-maven-3.8.6/lib/javax.inject.license
+apache-maven-3.8.6/lib/jcl-over-slf4j.license
+apache-maven-3.8.6/lib/org.eclipse.sisu.inject.license
+apache-maven-3.8.6/lib/org.eclipse.sisu.plexus.license
+apache-maven-3.8.6/lib/plexus-cipher.license
+apache-maven-3.8.6/lib/plexus-component-annotations.license
+apache-maven-3.8.6/lib/plexus-interpolation.license
+apache-maven-3.8.6/lib/plexus-sec-dispatcher.license
+apache-maven-3.8.6/lib/plexus-utils.license
+apache-maven-3.8.6/lib/slf4j-api.license
+apache-maven-3.8.6/boot/
+apache-maven-3.8.6/boot/plexus-classworlds.license
+apache-maven-3.8.6/lib/jansi-native/
+apache-maven-3.8.6/lib/jansi-native/Windows/
+apache-maven-3.8.6/lib/jansi-native/Windows/x86/
+apache-maven-3.8.6/lib/jansi-native/Windows/x86_64/
+apache-maven-3.8.6/lib/jansi-native/Windows/x86/jansi.dll
+apache-maven-3.8.6/lib/jansi-native/Windows/x86_64/jansi.dll
+apache-maven-3.8.6/bin/m2.conf
+apache-maven-3.8.6/bin/mvn.cmd
+apache-maven-3.8.6/bin/mvnDebug.cmd
+apache-maven-3.8.6/bin/mvn
+apache-maven-3.8.6/bin/mvnDebug
+apache-maven-3.8.6/bin/mvnyjp
+apache-maven-3.8.6/conf/
+apache-maven-3.8.6/conf/logging/
+apache-maven-3.8.6/conf/logging/simplelogger.properties
+apache-maven-3.8.6/conf/settings.xml
+apache-maven-3.8.6/conf/toolchains.xml
+apache-maven-3.8.6/lib/ext/
+apache-maven-3.8.6/lib/jansi-native/
+apache-maven-3.8.6/lib/ext/README.txt
+apache-maven-3.8.6/lib/jansi-native/README.txt
+apache-maven-3.8.6/boot/plexus-classworlds-2.6.0.jar
+apache-maven-3.8.6/lib/maven-embedder-3.8.6.jar
+apache-maven-3.8.6/lib/maven-settings-3.8.6.jar
+apache-maven-3.8.6/lib/maven-settings-builder-3.8.6.jar
+apache-maven-3.8.6/lib/maven-plugin-api-3.8.6.jar
+apache-maven-3.8.6/lib/maven-model-3.8.6.jar
+apache-maven-3.8.6/lib/maven-model-builder-3.8.6.jar
+apache-maven-3.8.6/lib/maven-builder-support-3.8.6.jar
+apache-maven-3.8.6/lib/maven-resolver-api-1.6.3.jar
+apache-maven-3.8.6/lib/maven-resolver-util-1.6.3.jar
+apache-maven-3.8.6/lib/maven-shared-utils-3.3.4.jar
+apache-maven-3.8.6/lib/commons-io-2.6.jar
+apache-maven-3.8.6/lib/guice-4.2.2-no_aop.jar
+apache-maven-3.8.6/lib/guava-25.1-android.jar
+apache-maven-3.8.6/lib/javax.inject-1.jar
+apache-maven-3.8.6/lib/javax.annotation-api-1.2.jar
+apache-maven-3.8.6/lib/plexus-utils-3.3.1.jar
+apache-maven-3.8.6/lib/plexus-sec-dispatcher-2.0.jar
+apache-maven-3.8.6/lib/plexus-cipher-2.0.jar
+apache-maven-3.8.6/lib/slf4j-api-1.7.36.jar
+apache-maven-3.8.6/lib/commons-lang3-3.8.1.jar
+apache-maven-3.8.6/lib/maven-core-3.8.6.jar
+apache-maven-3.8.6/lib/maven-repository-metadata-3.8.6.jar
+apache-maven-3.8.6/lib/maven-artifact-3.8.6.jar
+apache-maven-3.8.6/lib/maven-resolver-provider-3.8.6.jar
+apache-maven-3.8.6/lib/maven-resolver-impl-1.6.3.jar
+apache-maven-3.8.6/lib/maven-resolver-spi-1.6.3.jar
+apache-maven-3.8.6/lib/org.eclipse.sisu.inject-0.3.5.jar
+apache-maven-3.8.6/lib/plexus-interpolation-1.26.jar
+apache-maven-3.8.6/lib/plexus-component-annotations-2.1.0.jar
+apache-maven-3.8.6/lib/maven-compat-3.8.6.jar
+apache-maven-3.8.6/lib/wagon-provider-api-3.5.1.jar
+apache-maven-3.8.6/lib/org.eclipse.sisu.plexus-0.3.5.jar
+apache-maven-3.8.6/lib/commons-cli-1.4.jar
+apache-maven-3.8.6/lib/wagon-http-3.5.1-shaded.jar
+apache-maven-3.8.6/lib/jcl-over-slf4j-1.7.36.jar
+apache-maven-3.8.6/lib/wagon-file-3.5.1.jar
+apache-maven-3.8.6/lib/maven-resolver-connector-basic-1.6.3.jar
+apache-maven-3.8.6/lib/maven-resolver-transport-wagon-1.6.3.jar
+apache-maven-3.8.6/lib/maven-slf4j-provider-3.8.6.jar
+apache-maven-3.8.6/lib/jansi-2.4.0.jar
+[root@ip-172-31-12-244 opt]# yum install git
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+amzn2-core                                                                                                                 | 3.7 kB  00:00:00     
+Resolving Dependencies
+--> Running transaction check
+---> Package git.x86_64 0:2.37.1-1.amzn2.0.1 will be installed
+--> Processing Dependency: perl-Git = 2.37.1-1.amzn2.0.1 for package: git-2.37.1-1.amzn2.0.1.x86_64
+--> Processing Dependency: git-core-doc = 2.37.1-1.amzn2.0.1 for package: git-2.37.1-1.amzn2.0.1.x86_64
+--> Processing Dependency: git-core = 2.37.1-1.amzn2.0.1 for package: git-2.37.1-1.amzn2.0.1.x86_64
+--> Processing Dependency: perl(Term::ReadKey) for package: git-2.37.1-1.amzn2.0.1.x86_64
+--> Processing Dependency: perl(Git::I18N) for package: git-2.37.1-1.amzn2.0.1.x86_64
+--> Processing Dependency: perl(Git) for package: git-2.37.1-1.amzn2.0.1.x86_64
+--> Running transaction check
+---> Package git-core.x86_64 0:2.37.1-1.amzn2.0.1 will be installed
+---> Package git-core-doc.noarch 0:2.37.1-1.amzn2.0.1 will be installed
+---> Package perl-Git.noarch 0:2.37.1-1.amzn2.0.1 will be installed
+--> Processing Dependency: perl(Error) for package: perl-Git-2.37.1-1.amzn2.0.1.noarch
+---> Package perl-TermReadKey.x86_64 0:2.30-20.amzn2.0.2 will be installed
+--> Running transaction check
+---> Package perl-Error.noarch 1:0.17020-2.amzn2 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+==================================================================================================================================================
+ Package                               Arch                        Version                                  Repository                       Size
+==================================================================================================================================================
+Installing:
+ git                                   x86_64                      2.37.1-1.amzn2.0.1                       amzn2-core                       71 k
+Installing for dependencies:
+ git-core                              x86_64                      2.37.1-1.amzn2.0.1                       amzn2-core                      6.4 M
+ git-core-doc                          noarch                      2.37.1-1.amzn2.0.1                       amzn2-core                      2.8 M
+ perl-Error                            noarch                      1:0.17020-2.amzn2                        amzn2-core                       32 k
+ perl-Git                              noarch                      2.37.1-1.amzn2.0.1                       amzn2-core                       46 k
+ perl-TermReadKey                      x86_64                      2.30-20.amzn2.0.2                        amzn2-core                       31 k
+
+Transaction Summary
+==================================================================================================================================================
+Install  1 Package (+5 Dependent packages)
+
+Total download size: 9.3 M
+Installed size: 40 M
+Is this ok [y/d/N]: y
+Downloading packages:
+(1/6): git-2.37.1-1.amzn2.0.1.x86_64.rpm                                                                                   |  71 kB  00:00:00     
+(2/6): git-core-doc-2.37.1-1.amzn2.0.1.noarch.rpm                                                                          | 2.8 MB  00:00:00     
+(3/6): perl-Error-0.17020-2.amzn2.noarch.rpm                                                                               |  32 kB  00:00:00     
+(4/6): git-core-2.37.1-1.amzn2.0.1.x86_64.rpm                                                                              | 6.4 MB  00:00:00     
+(5/6): perl-Git-2.37.1-1.amzn2.0.1.noarch.rpm                                                                              |  46 kB  00:00:00     
+(6/6): perl-TermReadKey-2.30-20.amzn2.0.2.x86_64.rpm                                                                       |  31 kB  00:00:00     
+--------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                              30 MB/s | 9.3 MB  00:00:00     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : git-core-2.37.1-1.amzn2.0.1.x86_64                                                                                             1/6 
+  Installing : git-core-doc-2.37.1-1.amzn2.0.1.noarch                                                                                         2/6 
+  Installing : 1:perl-Error-0.17020-2.amzn2.noarch                                                                                            3/6 
+  Installing : perl-TermReadKey-2.30-20.amzn2.0.2.x86_64                                                                                      4/6 
+  Installing : perl-Git-2.37.1-1.amzn2.0.1.noarch                                                                                             5/6 
+  Installing : git-2.37.1-1.amzn2.0.1.x86_64                                                                                                  6/6 
+  Verifying  : perl-TermReadKey-2.30-20.amzn2.0.2.x86_64                                                                                      1/6 
+  Verifying  : git-core-doc-2.37.1-1.amzn2.0.1.noarch                                                                                         2/6 
+  Verifying  : perl-Git-2.37.1-1.amzn2.0.1.noarch                                                                                             3/6 
+  Verifying  : git-2.37.1-1.amzn2.0.1.x86_64                                                                                                  4/6 
+  Verifying  : git-core-2.37.1-1.amzn2.0.1.x86_64                                                                                             5/6 
+  Verifying  : 1:perl-Error-0.17020-2.amzn2.noarch                                                                                            6/6 
+
+Installed:
+  git.x86_64 0:2.37.1-1.amzn2.0.1                                                                                                                 
+
+Dependency Installed:
+  git-core.x86_64 0:2.37.1-1.amzn2.0.1          git-core-doc.noarch 0:2.37.1-1.amzn2.0.1             perl-Error.noarch 1:0.17020-2.amzn2         
+  perl-Git.noarch 0:2.37.1-1.amzn2.0.1          perl-TermReadKey.x86_64 0:2.30-20.amzn2.0.2         
+
+Complete!
+[root@ip-172-31-12-244 opt]# java --version
+openjdk 11.0.16 2022-07-19 LTS
+OpenJDK Runtime Environment (Red_Hat-11.0.16.0.8-1.amzn2.0.1) (build 11.0.16+8-LTS)
+OpenJDK 64-Bit Server VM (Red_Hat-11.0.16.0.8-1.amzn2.0.1) (build 11.0.16+8-LTS, mixed mode, sharing)
+[root@ip-172-31-12-244 opt]# maven --version
+bash: maven: command not found
+[root@ip-172-31-12-244 opt]# mvn --version
+bash: mvn: command not found
+[root@ip-172-31-12-244 opt]# ln -s apache-maven-3.8.6 maven
+[root@ip-172-31-12-244 opt]# ls
+apache-maven-3.8.6  apache-maven-3.8.6-bin.tar.gz  aws  maven  rh
+[root@ip-172-31-12-244 opt]# vi /etc/profile.d/maven.sh
+[root@ip-172-31-12-244 opt]# mvn --version
+bash: mvn: command not found
+[root@ip-172-31-12-244 opt]# yum install java
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+amzn2-core                                                                                                                 | 3.7 kB  00:00:00     
+Resolving Dependencies
+--> Running transaction check
+---> Package java-17-amazon-corretto.x86_64 1:17.0.5+8-1.amzn2.1 will be installed
+--> Processing Dependency: java-17-amazon-corretto-headless(x86-64) = 1:17.0.5+8-1.amzn2.1 for package: 1:java-17-amazon-corretto-17.0.5+8-1.amzn2.1.x86_64
+--> Processing Dependency: libXrandr for package: 1:java-17-amazon-corretto-17.0.5+8-1.amzn2.1.x86_64
+--> Processing Dependency: libXt for package: 1:java-17-amazon-corretto-17.0.5+8-1.amzn2.1.x86_64
+--> Processing Dependency: libXinerama for package: 1:java-17-amazon-corretto-17.0.5+8-1.amzn2.1.x86_64
+--> Running transaction check
+---> Package java-17-amazon-corretto-headless.x86_64 1:17.0.5+8-1.amzn2.1 will be installed
+--> Processing Dependency: dejavu-sans-mono-fonts for package: 1:java-17-amazon-corretto-headless-17.0.5+8-1.amzn2.1.x86_64
+--> Processing Dependency: dejavu-serif-fonts for package: 1:java-17-amazon-corretto-headless-17.0.5+8-1.amzn2.1.x86_64
+---> Package libXinerama.x86_64 0:1.1.3-2.1.amzn2.0.2 will be installed
+---> Package libXrandr.x86_64 0:1.5.1-2.amzn2.0.3 will be installed
+---> Package libXt.x86_64 0:1.1.5-3.amzn2.0.2 will be installed
+--> Running transaction check
+---> Package dejavu-sans-mono-fonts.noarch 0:2.33-6.amzn2 will be installed
+---> Package dejavu-serif-fonts.noarch 0:2.33-6.amzn2 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+==================================================================================================================================================
+ Package                                          Arch                   Version                                 Repository                  Size
+==================================================================================================================================================
+Installing:
+ java-17-amazon-corretto                          x86_64                 1:17.0.5+8-1.amzn2.1                    amzn2-core                 175 k
+Installing for dependencies:
+ dejavu-sans-mono-fonts                           noarch                 2.33-6.amzn2                            amzn2-core                 433 k
+ dejavu-serif-fonts                               noarch                 2.33-6.amzn2                            amzn2-core                 777 k
+ java-17-amazon-corretto-headless                 x86_64                 1:17.0.5+8-1.amzn2.1                    amzn2-core                  94 M
+ libXinerama                                      x86_64                 1.1.3-2.1.amzn2.0.2                     amzn2-core                  14 k
+ libXrandr                                        x86_64                 1.5.1-2.amzn2.0.3                       amzn2-core                  27 k
+ libXt                                            x86_64                 1.1.5-3.amzn2.0.2                       amzn2-core                 177 k
+
+Transaction Summary
+==================================================================================================================================================
+Install  1 Package (+6 Dependent packages)
+
+Total download size: 95 M
+Installed size: 241 M
+Is this ok [y/d/N]: y
+Downloading packages:
+(1/7): dejavu-sans-mono-fonts-2.33-6.amzn2.noarch.rpm                                                                      | 433 kB  00:00:00     
+(2/7): dejavu-serif-fonts-2.33-6.amzn2.noarch.rpm                                                                          | 777 kB  00:00:00     
+(3/7): java-17-amazon-corretto-17.0.5+8-1.amzn2.1.x86_64.rpm                                                               | 175 kB  00:00:00     
+(4/7): libXinerama-1.1.3-2.1.amzn2.0.2.x86_64.rpm                                                                          |  14 kB  00:00:00     
+(5/7): libXrandr-1.5.1-2.amzn2.0.3.x86_64.rpm                                                                              |  27 kB  00:00:00     
+(6/7): libXt-1.1.5-3.amzn2.0.2.x86_64.rpm                                                                                  | 177 kB  00:00:00     
+(7/7): java-17-amazon-corretto-headless-17.0.5+8-1.amzn2.1.x86_64.rpm                                                      |  94 MB  00:00:01     
+--------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                              66 MB/s |  95 MB  00:00:01     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : dejavu-sans-mono-fonts-2.33-6.amzn2.noarch                                                                                     1/7 
+  Installing : libXinerama-1.1.3-2.1.amzn2.0.2.x86_64                                                                                         2/7 
+  Installing : libXt-1.1.5-3.amzn2.0.2.x86_64                                                                                                 3/7 
+  Installing : dejavu-serif-fonts-2.33-6.amzn2.noarch                                                                                         4/7 
+  Installing : 1:java-17-amazon-corretto-headless-17.0.5+8-1.amzn2.1.x86_64                                                                   5/7 
+  Installing : libXrandr-1.5.1-2.amzn2.0.3.x86_64                                                                                             6/7 
+  Installing : 1:java-17-amazon-corretto-17.0.5+8-1.amzn2.1.x86_64                                                                            7/7 
+  Verifying  : libXrandr-1.5.1-2.amzn2.0.3.x86_64                                                                                             1/7 
+  Verifying  : 1:java-17-amazon-corretto-17.0.5+8-1.amzn2.1.x86_64                                                                            2/7 
+  Verifying  : dejavu-serif-fonts-2.33-6.amzn2.noarch                                                                                         3/7 
+  Verifying  : libXt-1.1.5-3.amzn2.0.2.x86_64                                                                                                 4/7 
+  Verifying  : 1:java-17-amazon-corretto-headless-17.0.5+8-1.amzn2.1.x86_64                                                                   5/7 
+  Verifying  : libXinerama-1.1.3-2.1.amzn2.0.2.x86_64                                                                                         6/7 
+  Verifying  : dejavu-sans-mono-fonts-2.33-6.amzn2.noarch                                                                                     7/7 
+
+Installed:
+  java-17-amazon-corretto.x86_64 1:17.0.5+8-1.amzn2.1                                                                                             
+
+Dependency Installed:
+  dejavu-sans-mono-fonts.noarch 0:2.33-6.amzn2                                      dejavu-serif-fonts.noarch 0:2.33-6.amzn2                     
+  java-17-amazon-corretto-headless.x86_64 1:17.0.5+8-1.amzn2.1                      libXinerama.x86_64 0:1.1.3-2.1.amzn2.0.2                     
+  libXrandr.x86_64 0:1.5.1-2.amzn2.0.3                                              libXt.x86_64 0:1.1.5-3.amzn2.0.2                             
+
+Complete!
+[root@ip-172-31-12-244 opt]# ls
+apache-maven-3.8.6  apache-maven-3.8.6-bin.tar.gz  aws  maven  rh
+[root@ip-172-31-12-244 opt]# mvn --version
+bash: mvn: command not found
+[root@ip-172-31-12-244 opt]# rm -rf maven/
+[root@ip-172-31-12-244 opt]# ls
+apache-maven-3.8.6  apache-maven-3.8.6-bin.tar.gz  aws  maven  rh
+[root@ip-172-31-12-244 opt]# sudo vi /etc/profile.d/maven.sh
+[root@ip-172-31-12-244 opt]# export /etc/profile.d/maven.sh
+bash: export: `/etc/profile.d/maven.sh': not a valid identifier
+[root@ip-172-31-12-244 opt]# cd /etc/
+[root@ip-172-31-12-244 etc]# cd  profile.d/
+[root@ip-172-31-12-244 profile.d]# cp maven.sh /etc/profile
+cp: overwrite ‘/etc/profile’? yes
+[root@ip-172-31-12-244 profile.d]# ls
+256term.csh  bash_completion.sh  colorgrep.sh  colorls.sh  lang.csh  less.csh  maven.sh  which2.csh
+256term.sh   colorgrep.csh       colorls.csh   csh.local   lang.sh   less.sh   sh.local  which2.sh
+[root@ip-172-31-12-244 profile.d]# cd
+[root@ip-172-31-12-244 ~]# cd /etc
+[root@ip-172-31-12-244 etc]# sudo vi profile
+[root@ip-172-31-12-244 etc]# export profile
+[root@ip-172-31-12-244 etc]# source profile
+[root@ip-172-31-12-244 etc]# mvn --version
+bash: mvn: command not found
+[root@ip-172-31-12-244 etc]# mavaen --version
+bash: mavaen: command not found
+[root@ip-172-31-12-244 etc]# maven --version
+bash: maven: command not found
+[root@ip-172-31-12-244 etc]# ls
+acpi               csh.login                grub.d               libaudit.conf   nsswitch.conf.bak  rc.local          subgid
+adjtime            dbus-1                   gshadow              libnl           openldap           request-key.conf  subuid
+aliases            default                  gshadow-             libuser.conf    opt                request-key.d     sudo.conf
+aliases.db         depmod.d                 gss                  locale.conf     os-release         resolv.conf       sudoers
+alternatives       dhcp                     gssproxy             localtime       pam.d              rpc               sudoers.d
+amazon             DIR_COLORS               hibagent-config.cfg  login.defs      passwd             rpm               sudo-ldap.conf
+anacrontab         DIR_COLORS.256color      hibinit-config.cfg   logrotate.conf  passwd-            rsyncd.conf       sysconfig
+asound.conf        DIR_COLORS.lightbgcolor  host.conf            logrotate.d     pkcs11             rsyslog.conf      sysctl.conf
+at.deny            dracut.conf              hostname             lsm             pki                rsyslog.d         sysctl.d
+audisp             dracut.conf.d            hosts                lvm             plymouth           rwtab             systemd
+audit              e2fsck.conf              hosts.allow          machine-id      pm                 rwtab.d           system-release
+bash_completion.d  environment              hosts.deny           magic           popt.d             sasl2             system-release-cpe
+bashrc             ethertypes               idmapd.conf          man_db.conf     postfix            scl               terminfo
+binfmt.d           exports                  image-id             maven           ppp                screenrc          tmpfiles.d
+chkconfig.d        exports.d                init.d               mke2fs.conf     prelink.conf.d     securetty         trusted-key.key
+chrony.conf        filesystems              inittab              modprobe.d      printcap           security          udev
+chrony.d           fonts                    inputrc              modules-load.d  profile            selinux           updatedb.conf
+chrony.keys        fstab                    iproute2             motd            profile.d          services          update-motd.d
+cifs-utils         gcrypt                   issue                mtab            protocols          sestatus.conf     vimrc
+cloud              GeoIP.conf               issue.net            my.cnf          python             setuptool.d       virc
+cron.d             GeoIP.conf.default       java                 my.cnf.d        rc0.d              shadow            wgetrc
+cron.daily         gnupg                    jvm                  nanorc          rc1.d              shadow-           X11
+cron.deny          GREP_COLORS              jvm-commmon          netconfig       rc2.d              shells            xdg
+cron.hourly        groff                    krb5.conf            NetworkManager  rc3.d              skel              xinetd.d
+cron.monthly       group                    krb5.conf.d          networks        rc4.d              ssh               yum
+crontab            group-                   ld.so.cache          nfs.conf        rc5.d              ssl               yum.conf
+cron.weekly        grub2.cfg                ld.so.conf           nfsmount.conf   rc6.d              statetab          yum.repos.d
+csh.cshrc          grub2-efi.cfg            ld.so.conf.d         nsswitch.conf   rc.d               statetab.d
+[root@ip-172-31-12-244 etc]# cd 
+[root@ip-172-31-12-244 ~]# cd /etc
+[root@ip-172-31-12-244 etc]# cd 
+[root@ip-172-31-12-244 ~]# /opt
+bash: /opt: Is a directory
+[root@ip-172-31-12-244 ~]# cd /opt
+[root@ip-172-31-12-244 opt]# ls
+apache-maven-3.8.6  apache-maven-3.8.6-bin.tar.gz  aws  maven  rh
+[root@ip-172-31-12-244 opt]# rm -rf apache-maven-3.8.6
+[root@ip-172-31-12-244 opt]# ls
+apache-maven-3.8.6-bin.tar.gz  aws  maven  rh
+[root@ip-172-31-12-244 opt]# rm -rf maven 
+[root@ip-172-31-12-244 opt]# ls
+apache-maven-3.8.6-bin.tar.gz  aws  rh
+[root@ip-172-31-12-244 opt]# tar xvzf apache-maven-3.8.6-bin.tar.gz 
+apache-maven-3.8.6/README.txt
+apache-maven-3.8.6/LICENSE
+apache-maven-3.8.6/NOTICE
+apache-maven-3.8.6/lib/
+apache-maven-3.8.6/lib/commons-cli.license
+apache-maven-3.8.6/lib/commons-io.license
+apache-maven-3.8.6/lib/commons-lang3.license
+apache-maven-3.8.6/lib/guava.license
+apache-maven-3.8.6/lib/guice.license
+apache-maven-3.8.6/lib/jansi.license
+apache-maven-3.8.6/lib/javax.annotation-api.license
+apache-maven-3.8.6/lib/javax.inject.license
+apache-maven-3.8.6/lib/jcl-over-slf4j.license
+apache-maven-3.8.6/lib/org.eclipse.sisu.inject.license
+apache-maven-3.8.6/lib/org.eclipse.sisu.plexus.license
+apache-maven-3.8.6/lib/plexus-cipher.license
+apache-maven-3.8.6/lib/plexus-component-annotations.license
+apache-maven-3.8.6/lib/plexus-interpolation.license
+apache-maven-3.8.6/lib/plexus-sec-dispatcher.license
+apache-maven-3.8.6/lib/plexus-utils.license
+apache-maven-3.8.6/lib/slf4j-api.license
+apache-maven-3.8.6/boot/
+apache-maven-3.8.6/boot/plexus-classworlds.license
+apache-maven-3.8.6/lib/jansi-native/
+apache-maven-3.8.6/lib/jansi-native/Windows/
+apache-maven-3.8.6/lib/jansi-native/Windows/x86/
+apache-maven-3.8.6/lib/jansi-native/Windows/x86_64/
+apache-maven-3.8.6/lib/jansi-native/Windows/x86/jansi.dll
+apache-maven-3.8.6/lib/jansi-native/Windows/x86_64/jansi.dll
+apache-maven-3.8.6/bin/m2.conf
+apache-maven-3.8.6/bin/mvn.cmd
+apache-maven-3.8.6/bin/mvnDebug.cmd
+apache-maven-3.8.6/bin/mvn
+apache-maven-3.8.6/bin/mvnDebug
+apache-maven-3.8.6/bin/mvnyjp
+apache-maven-3.8.6/conf/
+apache-maven-3.8.6/conf/logging/
+apache-maven-3.8.6/conf/logging/simplelogger.properties
+apache-maven-3.8.6/conf/settings.xml
+apache-maven-3.8.6/conf/toolchains.xml
+apache-maven-3.8.6/lib/ext/
+apache-maven-3.8.6/lib/jansi-native/
+apache-maven-3.8.6/lib/ext/README.txt
+apache-maven-3.8.6/lib/jansi-native/README.txt
+apache-maven-3.8.6/boot/plexus-classworlds-2.6.0.jar
+apache-maven-3.8.6/lib/maven-embedder-3.8.6.jar
+apache-maven-3.8.6/lib/maven-settings-3.8.6.jar
+apache-maven-3.8.6/lib/maven-settings-builder-3.8.6.jar
+apache-maven-3.8.6/lib/maven-plugin-api-3.8.6.jar
+apache-maven-3.8.6/lib/maven-model-3.8.6.jar
+apache-maven-3.8.6/lib/maven-model-builder-3.8.6.jar
+apache-maven-3.8.6/lib/maven-builder-support-3.8.6.jar
+apache-maven-3.8.6/lib/maven-resolver-api-1.6.3.jar
+apache-maven-3.8.6/lib/maven-resolver-util-1.6.3.jar
+apache-maven-3.8.6/lib/maven-shared-utils-3.3.4.jar
+apache-maven-3.8.6/lib/commons-io-2.6.jar
+apache-maven-3.8.6/lib/guice-4.2.2-no_aop.jar
+apache-maven-3.8.6/lib/guava-25.1-android.jar
+apache-maven-3.8.6/lib/javax.inject-1.jar
+apache-maven-3.8.6/lib/javax.annotation-api-1.2.jar
+apache-maven-3.8.6/lib/plexus-utils-3.3.1.jar
+apache-maven-3.8.6/lib/plexus-sec-dispatcher-2.0.jar
+apache-maven-3.8.6/lib/plexus-cipher-2.0.jar
+apache-maven-3.8.6/lib/slf4j-api-1.7.36.jar
+apache-maven-3.8.6/lib/commons-lang3-3.8.1.jar
+apache-maven-3.8.6/lib/maven-core-3.8.6.jar
+apache-maven-3.8.6/lib/maven-repository-metadata-3.8.6.jar
+apache-maven-3.8.6/lib/maven-artifact-3.8.6.jar
+apache-maven-3.8.6/lib/maven-resolver-provider-3.8.6.jar
+apache-maven-3.8.6/lib/maven-resolver-impl-1.6.3.jar
+apache-maven-3.8.6/lib/maven-resolver-spi-1.6.3.jar
+apache-maven-3.8.6/lib/org.eclipse.sisu.inject-0.3.5.jar
+apache-maven-3.8.6/lib/plexus-interpolation-1.26.jar
+apache-maven-3.8.6/lib/plexus-component-annotations-2.1.0.jar
+apache-maven-3.8.6/lib/maven-compat-3.8.6.jar
+apache-maven-3.8.6/lib/wagon-provider-api-3.5.1.jar
+apache-maven-3.8.6/lib/org.eclipse.sisu.plexus-0.3.5.jar
+apache-maven-3.8.6/lib/commons-cli-1.4.jar
+apache-maven-3.8.6/lib/wagon-http-3.5.1-shaded.jar
+apache-maven-3.8.6/lib/jcl-over-slf4j-1.7.36.jar
+apache-maven-3.8.6/lib/wagon-file-3.5.1.jar
+apache-maven-3.8.6/lib/maven-resolver-connector-basic-1.6.3.jar
+apache-maven-3.8.6/lib/maven-resolver-transport-wagon-1.6.3.jar
+apache-maven-3.8.6/lib/maven-slf4j-provider-3.8.6.jar
+apache-maven-3.8.6/lib/jansi-2.4.0.jar
+[root@ip-172-31-12-244 opt]# ls
+apache-maven-3.8.6  apache-maven-3.8.6-bin.tar.gz  aws  rh
+[root@ip-172-31-12-244 opt]# ln -s apache-maven-3.8.6 maven
+[root@ip-172-31-12-244 opt]# cd /etc
+[root@ip-172-31-12-244 etc]# ls
+acpi               csh.login                grub.d               libaudit.conf   nsswitch.conf.bak  rc.local          subgid
+adjtime            dbus-1                   gshadow              libnl           openldap           request-key.conf  subuid
+aliases            default                  gshadow-             libuser.conf    opt                request-key.d     sudo.conf
+aliases.db         depmod.d                 gss                  locale.conf     os-release         resolv.conf       sudoers
+alternatives       dhcp                     gssproxy             localtime       pam.d              rpc               sudoers.d
+amazon             DIR_COLORS               hibagent-config.cfg  login.defs      passwd             rpm               sudo-ldap.conf
+anacrontab         DIR_COLORS.256color      hibinit-config.cfg   logrotate.conf  passwd-            rsyncd.conf       sysconfig
+asound.conf        DIR_COLORS.lightbgcolor  host.conf            logrotate.d     pkcs11             rsyslog.conf      sysctl.conf
+at.deny            dracut.conf              hostname             lsm             pki                rsyslog.d         sysctl.d
+audisp             dracut.conf.d            hosts                lvm             plymouth           rwtab             systemd
+audit              e2fsck.conf              hosts.allow          machine-id      pm                 rwtab.d           system-release
+bash_completion.d  environment              hosts.deny           magic           popt.d             sasl2             system-release-cpe
+bashrc             ethertypes               idmapd.conf          man_db.conf     postfix            scl               terminfo
+binfmt.d           exports                  image-id             maven           ppp                screenrc          tmpfiles.d
+chkconfig.d        exports.d                init.d               mke2fs.conf     prelink.conf.d     securetty         trusted-key.key
+chrony.conf        filesystems              inittab              modprobe.d      printcap           security          udev
+chrony.d           fonts                    inputrc              modules-load.d  profile            selinux           updatedb.conf
+chrony.keys        fstab                    iproute2             motd            profile.d          services          update-motd.d
+cifs-utils         gcrypt                   issue                mtab            protocols          sestatus.conf     vimrc
+cloud              GeoIP.conf               issue.net            my.cnf          python             setuptool.d       virc
+cron.d             GeoIP.conf.default       java                 my.cnf.d        rc0.d              shadow            wgetrc
+cron.daily         gnupg                    jvm                  nanorc          rc1.d              shadow-           X11
+cron.deny          GREP_COLORS              jvm-commmon          netconfig       rc2.d              shells            xdg
+cron.hourly        groff                    krb5.conf            NetworkManager  rc3.d              skel              xinetd.d
+cron.monthly       group                    krb5.conf.d          networks        rc4.d              ssh               yum
+crontab            group-                   ld.so.cache          nfs.conf        rc5.d              ssl               yum.conf
+cron.weekly        grub2.cfg                ld.so.conf           nfsmount.conf   rc6.d              statetab          yum.repos.d
+csh.cshrc          grub2-efi.cfg            ld.so.conf.d         nsswitch.conf   rc.d               statetab.d
+[root@ip-172-31-12-244 etc]# sudo vi bash
+bash_completion.d/ bashrc             
+[root@ip-172-31-12-244 etc]# sudo vi bash
+bash_completion.d/ bashrc             
+[root@ip-172-31-12-244 etc]# sudo vi bashrc 
+Display all 197 possibilities? (y or n)
+acpi/                    ethertypes               krb5.conf                pki/                     setuptool.d/
+adjtime                  exports                  krb5.conf.d/             plymouth/                shadow
+aliases                  exports.d/               ld.so.conf               pm/                      shadow-
+aliases.db               filesystems              ld.so.conf.d/            popt.d/                  shells
+alternatives/            fonts/                   libaudit.conf            postfix/                 skel/
+amazon/                  fstab                    libnl/                   ppp/                     ssh/
+anacrontab               gcrypt/                  libuser.conf             prelink.conf.d/          ssl/
+asound.conf              GeoIP.conf               locale.conf              printcap                 statetab
+at.deny                  GeoIP.conf.default       localtime                profile                  statetab.d/
+audisp/                  gnupg/                   login.defs               profile.d/               subgid
+audit/                   GREP_COLORS              logrotate.conf           protocols                subuid
+bash_completion.d/       groff/                   logrotate.d/             .pwd.lock                sudo.conf
+bashrc                   group                    lsm/                     python/                  sudoers
+binfmt.d/                group-                   lvm/                     rc0.d/                   sudoers.d/
+chkconfig.d/             grub2.cfg                machine-id               rc1.d/                   sudo-ldap.conf
+chrony.conf              grub2-efi.cfg            magic                    rc2.d/                   sysconfig/
+chrony.d/                grub.d/                  man_db.conf              rc3.d/                   sysctl.conf
+chrony.keys              gshadow                  maven/                   rc4.d/                   sysctl.d/
+cifs-utils/              gshadow-                 mke2fs.conf              rc5.d/                   systemd/
+cloud/                   gss/                     modprobe.d/              rc6.d/                   system-release
+cron.d/                  gssproxy/                modules-load.d/          rc.d/                    system-release-cpe
+--More--                                            ^C
+[root@ip-172-31-12-244 etc]# sudo vi bashrc
+[root@ip-172-31-12-244 etc]# export bashrc
+[root@ip-172-31-12-244 etc]# source bashrc
+[root@ip-172-31-12-244 etc]# mvn --version
+Apache Maven 3.8.6 (84538c9988a25aec085021c365c560670ad80f63)
+Maven home: /opt/maven
+Java version: 17.0.5, vendor: Amazon.com Inc., runtime: /usr/lib/jvm/java-17-amazon-corretto.x86_64
+Default locale: en_US, platform encoding: UTF-8
+OS name: "linux", version: "5.10.147-133.644.amzn2.x86_64", arch: "amd64", family: "unix"
+[root@ip-172-31-12-244 etc]#
